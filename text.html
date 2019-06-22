@@ -1,0 +1,61 @@
+<html>
+<head>
+<style type="text/css">
+	body {
+  width: 200vw;
+  height: 100vw;
+  background: linear-gradient(165deg, #527785 0%, #7FB4C7 100%);
+  padding: 1%;
+}
+
+.cloud {
+	font-size:150px;
+	font-style:oblique;
+	font-weight: 900;
+  position: absolute;
+  top: -42vh;
+  left: -31vw;
+}
+
+#cloud-back {
+  filter: url(#filter-back);
+  text-shadow:420px 240px 10px #fff; 
+}
+
+#cloud-mid {
+  filter: url(#filter-mid);
+  text-shadow:410px 250px 12px rgba(158, 168, 179, 0.3);
+ }
+
+#cloud-front {
+  filter: url(#filter-front);
+  text-shadow:410px 250px 14px rgba(0, 0, 0, 0.2);
+}
+
+</style>
+</head>
+<body>
+	<div class="cloud" id="cloud-back">天边一片云</div>
+	<div class="cloud" id="cloud-mid">天边一片云</div>
+	<div class="cloud" id="cloud-front">天边一片云</div>
+
+<svg width="0" height="0"> 
+  <!--Top Layer-->
+    <filter id="filter-back">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="4" 
+seed="0" />     
+      <feDisplacementMap  in="SourceGraphic" scale="40" />
+    </filter>
+    <filter id="filter-mid">
+        <feTurbulence type="fractalNoise"  baseFrequency="0.012" numOctaves="2" 
+seed="0"/>
+      <feDisplacementMap  in="SourceGraphic" scale="45" />
+    </filter>
+    <filter id="filter-front">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" 
+seed="0"/>
+      <feDisplacementMap  in="SourceGraphic" scale="50" />
+    </filter>
+</svg>
+</body>
+</html>

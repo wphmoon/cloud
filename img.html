@@ -1,0 +1,80 @@
+<html>
+<head>
+<style type="text/css">
+	body {
+  width: 100vw;
+  height: 100vw;
+  background: linear-gradient(165deg, #527785 0%, #7FB4C7 100%);
+  padding: 1%;
+}
+
+.cloud {
+  position: absolute;
+}
+
+#cloud-blur-back {
+  filter: url(#filter-blur-back);
+}
+#cloud-div-back {
+  filter: url(#filter-div-back);
+  
+}
+
+#cloud-blur-mid {
+	transform:scale(0.95);
+  filter: brightness(90%) url(#filter-blur-mid);
+
+}
+#cloud-div-mid {
+  filter: url(#filter-div-mid);
+  left: 1vw;
+  top: 1vw;
+}
+
+#cloud-blur-front {
+	transform:scale(0.9);
+  filter: brightness(70%) url(#filter-blur-front);
+}
+#cloud-div-front {
+  filter: url(#filter-div-front);
+  left: 2vw;
+  top: 2vw;
+}
+
+</style>
+</head>
+<body>
+	<div class="cloud" id="cloud-div-back"><img src="girl1.png" class="cloud" id="cloud-blur-back" /></div>
+
+	<div class="cloud" id="cloud-div-mid"><img src="girl1.png" class="cloud" id="cloud-blur-mid" /></div>
+
+	<div class="cloud" id="cloud-div-front"><img src="girl1.png" class="cloud" id="cloud-blur-front" /></div>
+
+
+<svg width="0" height="0"> 
+    <filter id="filter-blur-back">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+    </filter>
+    <filter id="filter-div-back">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="5" seed="0"/>     
+      <feDisplacementMap  in="SourceGraphic" scale="30" />
+    </filter>
+    
+    <filter id="filter-blur-mid">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" />
+    </filter>
+    <filter id="filter-div-mid">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="0" />     
+      <feDisplacementMap  in="SourceGraphic" scale="25" />
+    </filter>
+    
+    <filter id="filter-blur-front">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
+    </filter>
+    <filter id="filter-div-front">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="0" />     
+      <feDisplacementMap  in="SourceGraphic" scale="50" />
+    </filter>
+</svg>
+</body>
+</html>

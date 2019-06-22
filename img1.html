@@ -1,0 +1,78 @@
+<html>
+<head>
+<style type="text/css">
+	body {
+  width: 100vw;
+  height: 100vw;
+  background: linear-gradient(165deg, #527785 0%, #7FB4C7 100%);
+  padding: 1%;
+}
+
+.cloud {
+  position: absolute;
+}
+
+.sourceImage {
+  position: absolute;
+  left:400px;
+  top:0px;
+}
+
+#cloud-blur-back {
+  filter: url(#filter-blur-back) url(#filter-div-back);
+}
+
+#cloud-blur-mid {
+	transform:scale(0.95);
+  filter: brightness(95%) url(#filter-blur-mid) url(#filter-div-back);
+  left: 1vw;
+  top: 1vw;
+}
+
+#cloud-blur-front {
+	transform:scale(0.9);
+  filter: brightness(90%) url(#filter-blur-front) url(#filter-div-back);
+left: 1vw;
+  top: 1vw;
+}
+
+</style>
+</head>
+<body>
+	<div>
+	<img src="twitter.png" class="cloud" id="cloud-blur-back" />
+
+	<img src="twitter.png" class="cloud" id="cloud-blur-mid" />
+
+	<img src="twitter.png" class="cloud" id="cloud-blur-front" />
+</div>
+<div >
+<img src="twitter.png" class="sourceImage"/>
+</div>
+<svg width="0" height="0"> 
+    <filter id="filter-blur-back">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+    </filter>
+    <filter id="filter-div-back">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="5" seed="0"/>     
+      <feDisplacementMap  in="SourceGraphic" scale="30" />
+    </filter>
+    
+    <filter id="filter-blur-mid">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+    </filter>
+    <filter id="filter-div-mid">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="0" />     
+      <feDisplacementMap  in="SourceGraphic" scale="25" />
+    </filter>
+    
+    <filter id="filter-blur-front">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+    </filter>
+    <filter id="filter-div-front">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="0" />     
+      <feDisplacementMap  in="SourceGraphic" scale="20" />
+    </filter>
+</svg>
+</body>
+</html>

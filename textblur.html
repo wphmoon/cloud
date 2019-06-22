@@ -1,0 +1,87 @@
+<html>
+<head>
+<style type="text/css">
+	body {
+  background: linear-gradient(165deg, #527785 0%, #7FB4C7 100%);
+  padding: 1%;
+}
+
+.cloud {
+	font-size:150px;
+	font-style:oblique;
+	font-weight: 900;
+  position: absolute;
+}
+
+#cloud-back {
+  filter: url(#filter-back);
+}
+#cloud-blur-back {
+  filter: url(#filter-blur-back);
+  color:#fff;
+}
+
+
+#cloud-mid {
+	opacity: 0.6;
+  filter: url(#filter-mid);
+  left: 1.1vw;
+  top: 1.1vw;
+
+}
+#cloud-blur-mid {
+  filter: url(#filter-blur-mid);
+  color:#DCDCDC;
+}
+
+#cloud-front {
+	opacity: 0.2;
+  filter: url(#filter-front);
+  left: 1.1vw;
+  top: 1.1vw;
+
+}
+#cloud-blur-front {
+  filter: url(#filter-blur-front);
+  color:#C8C8C8;
+}
+
+</style>
+</head>
+<body>
+
+	<div class="cloud" id="cloud-back"><div id="cloud-blur-back">天空飘来五个字</div></div>
+	<div class="cloud" id="cloud-mid"><div id="cloud-blur-mid">天空飘来五个字</div></div>
+	<!--<div class="cloud" id="cloud-front"><div id="cloud-blur-front">天空飘来五个字</div></div>-->
+
+<svg width="0" height="0"> 
+  <!--Top Layer-->
+  	<filter id="filter-blur-back">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
+    </filter>
+    <filter id="filter-back">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="4" 
+seed="0" />     
+      <feDisplacementMap  in="SourceGraphic" scale="40" />
+    </filter>
+    
+    <filter id="filter-blur-mid">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+    </filter>
+    <filter id="filter-mid">
+        <feTurbulence type="fractalNoise"  baseFrequency="0.012" numOctaves="5" 
+seed="0"/>
+      <feDisplacementMap  in="SourceGraphic" scale="60" />
+    </filter>
+    
+    <filter id="filter-blur-front">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+    </filter>
+    <filter id="filter-front">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="6" 
+seed="0"/>
+      <feDisplacementMap  in="SourceGraphic" scale="80" />
+    </filter>
+</svg>
+</body>
+</html>
