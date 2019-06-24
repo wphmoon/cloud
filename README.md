@@ -11,4 +11,4 @@ cloud-animate.html 动画云的实现<br/>
 教程地址：<br/>
 [1-天边一朵云-徒手用html生成一朵云，很真的那种](https://zhuanlan.zhihu.com/p/69862904)<br/>
 [2-天边一朵云-书画双绝](https://zhuanlan.zhihu.com/p/70267062)<br/>
-[3-天边一朵云-最终章动画化决定，看云卷云舒]()
+[3-天边一朵云-最终章动画化决定，看云卷云舒](https://zhuanlan.zhihu.com/p/70502907)
