@@ -1,0 +1,102 @@
+<html>
+<head>
+<style type="text/css">
+	body {
+  width: 100vw;
+  height: 100vw;
+  background: linear-gradient(165deg, #527785 0%, #7FB4C7 100%);
+  padding: 1%;
+}
+
+.cloud {
+  width: 300px;
+  height: 275px;
+  border-radius: 50%;
+  position: absolute;
+  top: -35vh;
+  left: -25vw;
+}
+
+#cloud-back {
+  filter: url(#filter-back);
+  box-shadow: 300px 300px 30px -20px #fff;
+}
+
+#cloud-mid {
+  filter: url(#filter-mid);
+  box-shadow: 300px 340px 70px -60px rgba(158, 168, 179, 0.5);
+    left: -25vw;
+}
+
+#cloud-front {
+	 filter: url(#filter-front);
+	box-shadow: 300px 370px 60px -100px rgba(0, 0, 0, 0.3);
+    left: -25vw;
+}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+</head>
+<body>
+
+	<div class="cloud" id="cloud-back"></div>
+	<div class="cloud" id="cloud-mid"></div>
+	<div class="cloud" id="cloud-front"></div>
+
+<svg width="0" height="0"> 
+    <filter id="filter-back">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="4" seed="0" />     
+      <feDisplacementMap  in="SourceGraphic">
+      	<animate attributeName="scale" id="first" begin="0s;second.end" from="130" to="170" dur="3s" ></animate>
+      	<animate attributeName="scale" id="second" begin="first.end" from="170" to="130" dur="3s" ></animate>
+    	</feDisplacementMap>	
+    </filter>
+    <filter id="filter-mid">
+        <feTurbulence type="fractalNoise"  baseFrequency="0.012" numOctaves="2" seed="0"/>
+      <feDisplacementMap  in="SourceGraphic">
+      	<animate attributeName="scale" id="first1" begin="0s;second1.end" from="100" to="140" dur="3s" ></animate>
+      	<animate attributeName="scale" id="second1" begin="first1.end" from="140" to="100" dur="3s" ></animate>
+    </feDisplacementMap>	
+    </filter>
+    <filter id="filter-front">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="0"/>
+      <feDisplacementMap  in="SourceGraphic">
+      	<animate attributeName="scale" id="first2" begin="0s;second2.end" from="80" to="110" dur="3s" ></animate>
+      	<animate attributeName="scale" id="second2" begin="first2.end" from="110" to="80" dur="3s" ></animate>
+      </feDisplacementMap>		
+    </filter>
+</svg>
+<script type="text/javascript">
+$(document).ready(function()
+  {
+  	var cssback = {width:'700px'};
+		$("#cloud-back").animate(cssback,12000,goback);
+		function goback(){
+			if(cssback.width==='700px')
+				cssback.width='300px';
+			else if(cssback.width==='300px')
+				cssback.width='700px';
+			$("#cloud-back").animate(cssback,12000,goback);
+		}
+		var cssmid = {width:'700px'};
+		$("#cloud-mid").animate(cssmid,12000,goBackmid);
+		function goBackmid(){
+			if(cssmid.width==='700px')
+				cssmid.width='300px';
+			else if(cssmid.width==='300px')
+				cssmid.width='700px';
+			$("#cloud-mid").animate(cssmid,12000,goBackmid);
+		}
+		var cssfront = {width:'700px'};
+		$("#cloud-front").animate(cssfront,12000,goBackfront);
+		function goBackfront(){
+			if(cssfront.width==='700px')
+				cssfront.width='300px';
+			else if(cssfront.width==='300px')
+				cssfront.width='700px';
+			$("#cloud-front").animate(cssfront,12000,goBackfront);
+		}
+});
+</script>
+</body>
+</html>
