@@ -29,7 +29,7 @@
 }
 
 #cloud-front {
-
+  filter: url(#filter-front);
   box-shadow: 300px 370px 60px -100px rgba(0, 0, 0, 0.3);
     left: -25vw;
 }
@@ -37,9 +37,10 @@
 </style>
 </head>
 <body>
-	<div class="cloud" id="cloud-back"></div>
-	<div class="cloud" id="cloud-mid"></div>
-	<div class="cloud" id="cloud-front"></div>
+  <div class="cloud" id="cloud-back"></div>
+  <div class="cloud" id="cloud-mid"></div>
+  <div class="cloud" id="cloud-front"></div>
+  
 <svg width="0" height="0"> 
   <!--Top Layer-->
     <filter id="filter-back">
