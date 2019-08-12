@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>随地小便</title>
+    <style>
+        body {
+            background: #1d2b29;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .svg-beerglass {
+            animation: flicker 4.1s infinite;
+        }
+
+        @keyframes flicker {
+            0% {
+                opacity: 0;
+            }
+
+            49% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="2000px" height="650px">
+        <defs>
+            <circle id="whitemoon" cx="350" cy="100" r="40" fill="white" />
+            <circle id="greymoon" cx="350" cy="100" r="20" fill="grey" fill-opacity="0.25"
+                filter="url(#filter-greymoon)" />
+            <ellipse id="cloudback" cx="260" cy="130" rx="180" ry="50" fill="white" fill-opacity="0.95"
+                filter="url(#blur-cloud)" />
+            <ellipse id="cloudmid" cx="260" cy="140" rx="140" ry="30" fill="#9EA8B3" fill-opacity="0.5"
+                filter="url(#blur-cloud)" />
+            <ellipse id="cloudfront" cx="260" cy="160" rx="100" ry="20" fill="black" fill-opacity="0.2"
+                filter="url(#blur-cloud)" />
+            <filter id="blur-moon">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+            </filter>
+            <filter id="blur-greymoon" width="350%" height="250%" x="-100%" y="-100%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
+            </filter>
+            <filter id="blur-cloud" width="350%" height="250%" x="-100%" y="-100%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+            </filter>
+            <filter id="blur-huazhi">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" />
+            </filter>
+            <filter id="blur-suibian">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+            </filter>
+            <filter id="filter-suibian" width="350%" height="250%" x="-100%" y="-100%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="1" seed="1" />
+                <feDisplacementMap in="SourceGraphic" scale="0">
+                    <animate attributeName="scale" id="first2" begin="0s;second2.end" from="5" to="15" dur="0.5s">
+                    </animate>
+                    <animate attributeName="scale" id="second2" begin="first2.end" from="15" to="5" dur="1s"></animate>
+                </feDisplacementMap>
+            </filter>
+            <filter id="filter-greymoon" width="350%" height="250%" x="-100%" y="-100%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="9" seed="3" />
+                <feDisplacementMap in="SourceGraphic" scale="120" />
+            </filter>
+            <filter id="filter-back" width="350%" height="280%" x="-100%" y="-100%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="4" seed="0" />
+                <feDisplacementMap in="SourceGraphic" scale="140" />
+            </filter>
+            <filter id="filter-mid" width="350%" height="250%" x="-100%" y="-100%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="4" seed="0" />
+                <feDisplacementMap in="SourceGraphic" scale="120" />
+            </filter>
+            <filter id="filter-front" width="350%" height="250%" x="-100%" y="-100%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="4" seed="0" />
+                <feDisplacementMap in="SourceGraphic" scale="100" />
+            </filter>
+            <filter id="huazhishadow" x="0" y="0" width="400%" height="200%">
+                <feOffset result="offOut" in="SourceAlpha" dx="280" dy="0" />
+                <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1" />
+                <feBlend in="SourceGraphic" in2="blurOut" mode="darken" />
+            </filter>
+            <filter id="shadow">
+                <feDropShadow dx="1" dy="1" stdDeviation="0.1" />
+            </filter>
+            <filter id="shock2">
+                <feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="1" seed="2" result="noise" id="noise">
+                    <animate attributeType="XML" attributeName="seed" from="2" to="120" dur="10s"
+                        repeatCount="indefinite" />
+                </feTurbulence>
+                <feMorphology id="morph3" in="SourceGraphic" operator="dilate" radius="1" result="morph1" />
+                <feMorphology id="morph4" in="morph1" operator="erode" radius="1" result="morph2" />
+                <feComposite operator="out" in="morph2" in2="morph1" result="strokeText" />
+                <feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="strokeText" in2="noise"
+                    result="displacementMap" color-interpolation-filters="auto" scale="10" />
+                <feGaussianBlur stdDeviation="1" result="coloredBlur" />
+                <feMerge>
+                    <feMergeNode in="coloredBlur" />
+                    <feMergeNode in="displacementMap" />
+                </feMerge>
+            </filter>
+            <filter id="glow">
+                <feGaussianBlur id="glowBlur" stdDeviation="1" result="coloredBlur" />
+                <feMerge>
+                    <feMergeNode in="coloredBlur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+
+            <g id="moon">
+                <use xlink:href="#whitemoon" />
+                <use xlink:href="#whitemoon" filter="url(#blur-moon)" />
+                <use xlink:href="#greymoon" filter="url(#blur-greymoon)" />
+            </g>
+            <g id="cloud">
+                <use xlink:href="#cloudback" filter="url(#filter-back)" />
+                <use xlink:href="#cloudmid" filter="url(#filter-mid)" />
+                <use xlink:href="#cloudfront" filter="url(#filter-front)" />
+            </g>
+
+            <svg id="suibian" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#"
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
+                xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="210mm" height="297mm"
+                viewBox="0 0 210 297" version="1.1" id="svg8" inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+                sodipodi:docname="suibian.svg">
+                <defs id="defs2" />
+                <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0"
+                    inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="0.49497475"
+                    inkscape:cx="241.61025" inkscape:cy="584.00547" inkscape:document-units="mm"
+                    inkscape:current-layer="layer1" showgrid="false" inkscape:window-width="1920"
+                    inkscape:window-height="1000" inkscape:window-x="-11" inkscape:window-y="-11"
+                    inkscape:window-maximized="1" />
+                <metadata id="metadata5">
+                    <rdf:RDF>
+                        <cc:Work rdf:about="">
+                            <dc:format>image/svg+xml</dc:format>
+                            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                            <dc:title></dc:title>
+                        </cc:Work>
+                    </rdf:RDF>
+                </metadata>
+                <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1">
+                    <path
+                        style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.261;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                        id="path815"
+                        d="m 172.8351,99.322629 c -4.0442,0.405162 -7.85177,1.913281 -11.5996,3.394291 -2.8277,0.73058 -5.25602,2.39195 -7.96916,3.41392 -3.76945,1.94172 -2.15208,1.12594 7.52211,-4.3416 0.35889,-0.20283 -0.70742,0.42357 -1.05831,0.63994 -1.05089,0.64801 -2.06688,1.34742 -3.0976,2.02664 -1.93325,1.15775 -3.16703,3.01842 -4.52611,4.74972 -1.57325,1.91758 -3.37065,3.59895 -5.37987,5.04568 -5.98225,3.86075 -21.79403,12.36299 -3.75412,2.23279 0.45948,-0.25802 -0.88845,0.567 -1.33576,0.84559 -0.44271,0.27572 -0.88259,0.55644 -1.33422,0.8173 -3.61028,2.08523 -7.23399,4.14711 -10.85099,6.22067 16.18697,-9.9935 5.97359,-3.2298 2.34871,-0.62839 -2.33686,1.75588 -4.6137,3.59009 -6.93878,5.36034 -2.08443,1.40913 -3.98247,3.06825 -5.93808,4.64741 -3.06388,2.28541 -5.94844,4.75982 -8.60005,7.51124 -3.25846,3.77661 -6.26073,7.7653 -9.43351,11.61399 -3.00177,3.79844 -6.158601,7.47239 -9.00139,11.3918 -3.092445,4.31893 -4.912971,9.26355 -6.768878,14.1832 -1.326941,2.75905 -2.523768,5.55974 -3.641246,8.40809 -1.212996,2.70476 -2.95343,5.11992 -4.670174,7.51992 -1.960925,2.83598 -3.911036,5.67555 -5.477134,8.75165 -1.019056,2.60292 -2.274295,5.12517 -3.005211,7.82907 -0.314566,2.31794 -0.793904,4.56076 -1.656464,6.73788 -0.644059,2.18987 -1.448263,4.29999 -2.325388,6.40758 -0.676238,1.58334 -1.122106,3.23693 -1.472333,4.91718 0,0 -10.015132,4.85941 -10.015132,4.85941 v 0 c 0.326511,-1.74592 0.723723,-3.47135 1.409184,-5.11845 0.444944,-1.14267 1.022712,-2.26325 1.442725,-3.40977 0.197213,-0.53833 0.352407,-1.48886 0.51121,-2.0444 0.08903,-0.31144 0.209129,-0.61315 0.313695,-0.91972 0.806349,-2.0354 1.253815,-3.13204 1.558142,-5.35821 0.0577,-0.42209 0.139615,-0.84051 0.209423,-1.26076 0.619955,-2.85628 1.965166,-5.3539 2.982872,-8.08245 1.480844,-3.16532 3.411776,-6.04777 5.399866,-8.91501 1.661609,-2.3547 3.361282,-4.69081 4.697883,-7.25043 1.19615,-2.85048 2.23356,-5.75732 3.786185,-8.45031 1.932726,-4.99224 3.750024,-10.03631 6.810663,-14.48966 0.568111,-0.8596 1.102537,-1.74244 1.70433,-2.57881 2.216271,-3.08016 4.936955,-5.7905 7.168477,-8.86103 3.200922,-3.82042 6.226871,-7.77951 9.353425,-11.65678 2.57966,-2.77516 5.32213,-5.37957 8.4224,-7.57562 1.89355,-1.64803 3.87338,-3.23363 5.8879,-4.72265 2.43085,-1.61157 4.61276,-3.60603 6.95173,-5.34951 5.25429,-3.91642 10.71517,-7.44838 16.6045,-10.41721 -2.70087,1.56969 -5.40424,3.13509 -8.10263,4.70906 -0.44921,0.26202 0.91316,-0.49899 1.35504,-0.77319 0.44885,-0.27853 0.86027,-0.61565 1.31535,-0.88389 3.5924,-2.11746 7.19803,-4.21289 10.82442,-6.27162 2.37341,-1.3474 -12.67374,7.41025 -7.07866,4.11458 2.04638,-1.3276 3.87358,-2.87187 5.45321,-4.74226 1.48991,-1.68895 2.56357,-3.74977 4.432,-5.0864 5.19133,-3.16602 9.97633,-7.12614 15.76652,-9.252502 2.61616,-1.126747 5.11155,-2.540214 7.87125,-3.317666 3.84791,-1.457873 7.77558,-2.814076 11.8967,-3.22172 0,0 -8.96912,6.631077 -8.96912,6.631077 z"
+                        inkscape:connector-curvature="0" />
+                </g>
+            </svg>
+            <svg id="wc" t="1565534122398" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="5989" width="32" height="32">
+                <path stroke="black" stroke-width="25" stroke-dasharray="910,324"
+                    d="M326.8 408.7c-22.1 79.5-44.2 159-66.2 238.6-16.4 59.3-16.3 59.3-83.6 54.6C143.9 577.3 110.4 451.4 75.9 322h62.4c23.5 103.4 47.1 206.8 72.4 318.2 21.7-82 41.5-156.9 61.3-231.9 3.2-12 5.9-24 9-36 14.5-55.6 14.5-55.6 78.6-50.3 27.7 104.2 55.7 209.8 86.4 325.6 22.1-100.7 41.5-190.7 61.7-280.5 11.3-50.6 11.8-50.5 71.3-44.3-33.6 126.6-66.9 252.3-100 377-61.1 9.4-61 9.3-75.5-44.8-22-82.1-44.3-164.1-66.4-246.1-3.4 0-6.8-0.1-10.3-0.2zM170 278.5h-53.6c0-46.7-3.7-92.5 1.1-137.4 4.3-39.7 41.2-69.9 81.3-75.9 15.8-2.4 32.1-3.1 48.1-3.2 180.8-0.2 361.7-0.3 542.5-0.1 99 0.2 134.1 35.7 134.1 134.4v82.1h-57.1c0-31.9 0.5-62.5-0.1-93-0.9-47.1-16.4-63.7-62-63.8-190.7-0.4-381.5-0.4-572.2 0-45.5 0.1-61.2 17-62 63.8-0.5 29.6-0.1 59.2-0.1 93.1zM112.9 745.1H170c0 31.9-0.4 62.5 0.1 93 0.8 46.8 16.5 63.8 62 63.9 190.7 0.4 381.5 0.4 572.2 0 45.6-0.1 61-16.7 62.2-63.8 0.7-28.4 0.9-56.9 1.4-85.3 0-1.2 0.7-2.3 2.1-6.4h50.1c0 45.3 3.6 91.1-1.1 136-4.1 39.4-41 69.8-81.4 75.9-17.1 2.6-34.5 3.2-51.8 3.2-178.3 0.2-356.7 0.3-535 0.1-103.9-0.1-137.8-34.3-137.8-138.2-0.1-25.7-0.1-51.4-0.1-78.4zM898.7 569.2c17.5 4.3 33.8 8.3 49.7 12.1-0.4 59.4-46.1 111.1-109.8 122.9-69.4 12.9-136.4 4.5-183.4-52.5-54.9-66.7-58.1-145.2-30.2-224.9 24.4-69.7 86.5-111.7 163.1-113.3 73.7-1.6 131.3 37.8 162 114.1-17.4 4.9-34.3 9.7-53.3 15-3.4-5.6-7-10.2-9.3-15.4-17.7-40.5-49.7-62.6-92.7-63.2-45.9-0.7-80.6 23-101.2 63.9-27 53.7-29.5 109.2-6.7 165.2 18.2 44.9 57.7 73 102.2 73.4 45.3 0.4 81.7-26.5 100.5-74.5 2.6-6.6 5.3-13.3 9.1-22.8z"
+                    p-id="5990" fill="none"></path>
+            </svg>
+            <svg id="finger" t="1565534851037" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="7712" xmlns:xlink="http://www.w3.org/1999/xlink" width="32"
+                height="32">
+                <defs>
+                    <style type="text/css">
+                        @font-face {
+                            font-weight: 400;
+                            font-style: normal;
+                            font-family: Inter-Loom;
+                            src: url("https://cdn.loom.com/assets/fonts/inter/Inter-UI-Regular.woff2") format("woff2");
+                        }
+
+                        @font-face {
+                            font-weight: 400;
+                            font-style: italic;
+                            font-family: Inter-Loom;
+                            src: url("https://cdn.loom.com/assets/fonts/inter/Inter-UI-Italic.woff2") format("woff2");
+                        }
+
+                        @font-face {
+                            font-weight: 500;
+                            font-style: normal;
+                            font-family: Inter-Loom;
+                            src: url("https://cdn.loom.com/assets/fonts/inter/Inter-UI-Medium.woff2") format("woff2");
+                        }
+
+                        @font-face {
+                            font-weight: 500;
+                            font-style: italic;
+                            font-family: Inter-Loom;
+                            src: url("https://cdn.loom.com/assets/fonts/inter/Inter-UI-MediumItalic.woff2") format("woff2");
+                        }
+
+                        @font-face {
+                            font-weight: 700;
+                            font-style: normal;
+                            font-family: Inter-Loom;
+                            src: url("https://cdn.loom.com/assets/fonts/inter/Inter-UI-Bold.woff2") format("woff2");
+                        }
+
+                        @font-face {
+                            font-weight: 700;
+                            font-style: italic;
+                            font-family: Inter-Loom;
+                            src: url("https://cdn.loom.com/assets/fonts/inter/Inter-UI-BoldItalic.woff2") format("woff2");
+                        }
+
+                        @font-face {
+                            font-weight: 900;
+                            font-style: normal;
+                            font-family: Inter-Loom;
+                            src: url("https://cdn.loom.com/assets/fonts/inter/Inter-UI-Black.woff2") format("woff2");
+                        }
+
+                        @font-face {
+                            font-weight: 900;
+                            font-style: italic;
+                            font-family: Inter-Loom;
+                            src: url("https://cdn.loom.com/assets/fonts/inter/Inter-UI-BlackItalic.woff2") format("woff2");
+                        }
+                    </style>
+                </defs>
+                <path stroke="#8B1616" stroke-width="40" stroke-dasharray="710,49"
+                    d="M121.856 321.536c2.048-1.024 4.096-3.072 5.12-4.096h1.024c1.024-1.024 2.048-1.024 2.048-2.048 2.048-1.024 3.072-2.048 4.096-3.072l212.992-143.36c24.576-16.384 54.272-22.528 83.968-17.408 29.696 6.144 55.296 22.528 71.68 47.104 12.288 18.432 18.432 39.936 18.432 62.464 0 17.408-4.096 33.792-11.264 49.152h355.328c61.44 0 112.64 48.128 112.64 107.52s-50.176 107.52-112.64 107.52H751.616c3.072 9.216 4.096 18.432 4.096 26.624 0 27.648-13.312 54.272-35.84 73.728 9.216 15.36 14.336 31.744 14.336 49.152 0 19.456-6.144 38.912-18.432 55.296-9.216 12.288-21.504 22.528-35.84 30.72 3.072 9.216 4.096 17.408 4.096 26.624 0 55.296-50.176 100.352-112.64 100.352h-296.96c-66.56 0-139.264-30.72-186.368-76.8-26.624-25.6-40.96-54.272-40.96-79.872V424.96c0-57.344 41.984-82.944 74.752-103.424z m-7.168 408.576c0 9.216 14.336 31.744 47.104 53.248 34.816 23.552 75.776 36.864 113.664 36.864H573.44c24.576 0 45.056-15.36 45.056-33.792 0-4.096-1.024-7.168-3.072-11.264H512c-17.408-1.024-30.72-15.36-30.72-33.792 0-17.408 13.312-31.744 30.72-33.792h90.112l25.6-2.048c22.528-2.048 40.96-16.384 40.96-33.792 0-7.168-4.096-15.36-10.24-21.504h-112.64c-18.432 0-33.792-15.36-33.792-33.792s15.36-33.792 33.792-33.792H645.12l11.264 1.024c19.456-4.096 33.792-18.432 33.792-31.744 0-9.216-6.144-19.456-17.408-25.6l-111.616-1.024h-41.984c-16.384 0-29.696-13.312-29.696-29.696v-7.168c0-16.384 13.312-29.696 29.696-29.696h348.16c25.6 0 45.056-18.432 45.056-40.96s-20.48-40.96-45.056-40.96l-325.632 1.024H407.552c-18.432 0-33.792-15.36-33.792-33.792 0-13.312 8.192-25.6 20.48-30.72 1.024-1.024 3.072-1.024 4.096-2.048l36.864-12.288c12.288-9.216 20.48-22.528 20.48-37.888 0-9.216-3.072-17.408-7.168-25.6-14.336-20.48-41.984-26.624-63.488-12.288l-211.968 143.36h-1.024c-1.024 0-2.048 1.024-3.072 2.048-1.024 1.024-2.048 1.024-3.072 2.048-2.048 1.024-4.096 3.072-6.144 4.096l-1.024 1.024-1.024 1.024c-35.84 22.528-43.008 30.72-43.008 48.128v305.152z"
+                    fill="none" p-id="7713"></path>
+            </svg>
+            <g id="suibian1">
+                <use xlink:href="#suibian" width="150" x="160" y="45" filter="url(#blur-suibian)" />
+            </g>
+            <svg id="jiupin" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#"
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
+                xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="210mm" height="297mm"
+                viewBox="0 0 210 297" version="1.1" id="svg5721" inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+                sodipodi:docname="jiuping.svg">
+                <defs id="defs5715" />
+                <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0"
+                    inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="0.35" inkscape:cx="-112.85714"
+                    inkscape:cy="560" inkscape:document-units="mm" inkscape:current-layer="layer1" showgrid="false"
+                    inkscape:window-width="1920" inkscape:window-height="1000" inkscape:window-x="-11"
+                    inkscape:window-y="-11" inkscape:window-maximized="1" />
+                <metadata id="metadata5718">
+                    <rdf:RDF>
+                        <cc:Work rdf:about="">
+                            <dc:format>image/svg+xml</dc:format>
+                            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                            <dc:title></dc:title>
+                        </cc:Work>
+                    </rdf:RDF>
+                </metadata>
+                <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1">
+                    <path style="fill:#000000;stroke-width:0.12662637" inkscape:connector-curvature="0"
+                        d="m 96.940112,135.10889 c -1.332179,-1.77624 -4.440595,-4.4406 -6.660894,-5.77278 -2.220298,-1.33218 -3.108418,-4.88465 -3.108418,-5.77277 0,-0.88812 0.44406,-4.4406 0.44406,-6.21684 0,-1.77623 -1.332178,-5.32871 -1.332178,-6.66089 -0.44406,-0.88812 -0.888119,-3.99654 -0.888119,-6.21683 0,0 1.332179,0.44405 1.332179,-1.33218 V 91.146988 c 0,0 0.444058,-0.88812 -1.332179,-1.332179 -1.776239,-0.44406 -4.440597,-0.888119 -6.660894,-0.888119 -2.220299,0 -5.328715,0.444059 -6.660894,0.888119 -1.776239,0.444059 -1.776239,0.888119 -1.776239,0.888119 v 11.989612 c 0,1.77624 1.776239,1.77624 1.776239,1.77624 0,2.22029 -0.44406,5.32871 -0.88812,6.21683 -0.444059,1.33218 -1.332179,4.88466 -1.332179,6.66089 0,1.77624 0.44406,5.32872 0.44406,6.21684 0,0.88812 -0.44406,4.44059 -3.108416,5.77277 -2.664359,1.33218 -5.328717,3.99654 -6.660895,5.77278 -1.332179,1.77624 -0.888119,5.77277 -0.888119,5.77277 v 48.84656 c 0,0 0,16.4302 0.44406,20.42674 0,3.99654 2.664357,7.54902 2.664357,7.54902 h 32.41635 c 0,0 2.664358,-3.55248 2.664358,-7.54902 0,-3.99654 0.44406,-20.42674 0.44406,-20.42674 v -48.84656 c -0.44406,0 0,-3.99653 -1.332179,-5.77277 z"
+                        p-id="5216" id="path5700" />
+                    <path style="fill:#000000;stroke-width:0.12662637" inkscape:connector-curvature="0"
+                        d="m 100.93664,215.48368 c 1.77624,-1.33218 4.4406,-4.4406 5.77278,-6.6609 1.33218,-2.22029 4.88465,-3.10841 5.77277,-3.10841 0.88812,0 4.4406,0.44406 6.21684,0.44406 1.77623,0 5.77277,-1.33218 6.66089,-1.33218 0.88812,-0.44406 3.99654,-0.88812 6.66089,-0.44406 0,0 -0.44406,1.33218 1.33218,1.33218 h 11.98961 c 0,0 0.88812,0.44406 1.33218,-1.33218 0.44406,-1.77624 0.44406,-4.4406 0.44406,-6.6609 0,-2.22029 -0.44406,-4.88465 -0.44406,-6.66089 -0.44406,-1.77624 -1.33218,-1.33218 -1.33218,-1.33218 h -11.98961 c -1.77624,0 -1.33218,1.33218 -1.33218,1.33218 -2.66435,0 -5.32871,-0.44406 -6.66089,-0.44406 -0.88812,-0.44406 -4.88466,-1.33218 -6.66089,-1.33218 -1.77624,0 -5.32872,0.44406 -6.21684,0.44406 -0.88812,0 -4.44059,-0.44406 -5.77277,-3.10842 -1.33218,-2.66435 -3.99654,-5.32871 -5.77278,-6.66089 -1.776237,-1.33218 -5.772767,-0.88812 -5.772767,-0.88812 H 46.317299 c 0,0 -16.430195,0 -20.426735,0.44406 -3.99654,0 -7.54902,2.66436 -7.54902,2.66436 v 32.41635 c 0,0 3.55248,2.66436 7.54902,2.66436 3.99654,0 20.426735,0.44406 20.426735,0.44406 h 48.846574 c 0,-1.33218 3.99653,-0.88812 5.772767,-2.2203 z"
+                        p-id="5217" id="path5702" />
+                </g>
+            </svg>
+
+            <image id="huazhi" xlink:href="huazhi.png" width="100">
+                <animateTransform attributeName="transform" id="first" begin="0s;third.end" dur="0.5s" type="rotate"
+                    from="0 73 199" to="-5 73 199"></animateTransform>
+                <animateTransform attributeName="transform" id="second" begin="first.end" dur="0.2s" type="rotate"
+                    from="-5 73 199" to="-7 73 199"></animateTransform>
+                <animateTransform attributeName="transform" id="third" begin="second.end" dur="0.4s" type="rotate"
+                    from="-7 73 199" to="0 73 199"></animateTransform>
+            </image>
+            <use id="huazhiyin" xlink:href="#huazhi" filter="url(#huazhishadow)" transform="skewX(29)" />
+            <g id="fly">
+                <image xlink:href="fly.png" filter="url(#shadow)" width="8">
+                    <animateMotion
+                        path="m -54.38608,206.12261 34.03516,7.36844 38.94745,-3.50878 48.070278,-12.63161 26.315844,-21.40355 35.438668,18.24565 47.7194,-14.38599 43.50886,-31.22814 9.82459,-23.15794 -6.31581,-16.84214 -17.54389,-7.01756 -22.10531,0.70176 -9.82458,21.40355 -8.42107,23.50882 -35.78955,1.75439 -23.50883,-14.73687 -34.035154,16.49126 -29.824624,28.42111 -46.3158872,20.7018 -25.9649658,-14.38599 -16.491265,12.28072 z"
+                        dur="10s" rotate="auto" repeatCount="indefinite" />
+                </image>
+            </g>
+            <use id="jiupinshadow" xlink:href="#jiupin" width="80" filter="url(#blur-moon)" transform="skewX(10)" />
+            <g id="wcall">
+                <use id="wc1" xlink:href="#wc" />
+            </g>
+            <g id="fingerall">
+                <use id="finger" xlink:href="#finger">
+                    <animateTransform attributeName="transform" id="first1" begin="0s;second1.end" dur="0.5s"
+                        type="rotate" from="80" to="100"></animateTransform>
+                    <animateTransform attributeName="transform" id="second1" begin="first1.end" dur="0.8s" type="rotate"
+                        from="100" to="80"></animateTransform>
+                </use>
+            </g>
+
+            <!--啤酒节招牌-->
+            <filter id="beerbottleblur" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+            </filter>
+            <svg id="beerbottle" t="1565578109000" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="7275" width="128" height="128">
+                <path stroke="#29ABE2" stroke-width="25"
+                    d="M571.907998 79.770028H452.090002c-10.226 0-17.731999-9.612-15.25-19.532l5.874-23.499999a27.725999 27.725999 0 0 1 26.897999-21.001999h84.771998c12.724 0 23.813999 8.66 26.897999 21.001999l5.874 23.499999c2.482 9.92-5.022 19.531999-15.248 19.532z"
+                    fill="none" p-id="7276"></path>
+                <path stroke="#009D00" stroke-width="25"
+                    d="M591.767998 1008.268h-159.539996c-35.515999 0-64.308998-28.789999-64.308998-64.307998V530.552014a521.779985 521.779985 0 0 1 48.024999-218.658993l0.002-0.002A521.769985 521.769985 0 0 0 463.970001 93.234027V79.768028h96.049998v13.463999a521.797985 521.797985 0 0 0 48.025998 218.660994 521.783985 521.783985 0 0 1 48.026999 218.660993v413.407988c0.002 35.515999-28.788999 64.305998-64.304998 64.305998z"
+                    fill="none" p-id="7277"></path>
+                <path stroke="#00CA65" stroke-width="25"
+                    d="M607.025997 311.893021c-31.639999-68.551998-47.207999-143.155996-47.207998-218.659994V80.607028H511.56v12.623999c0 75.504998 16.618 150.108996 48.257999 218.660994 31.639999 68.551998 48.257999 143.156996 48.257998 218.660993V943.960002c0 35.515999-28.815999 64.031998-64.333998 64.031998h48.025999c35.515999 0 62.466998-28.515999 62.466998-64.031998V530.554014c0-75.501998-15.569-150.106996-47.208999-218.659993z"
+                    fill="none" p-id="7278"></path>
+                <path stroke="#008442" stroke-width="25"
+                    d="M416.094003 311.893021c31.639999-68.551998 47.207999-143.155996 47.207998-218.659994V80.607028h48.257999v12.623999c0 75.504998-15.568 150.108996-47.207999 218.660994s-47.207999 143.156996-47.207998 218.660993V943.960002c0 35.515999 27.591999 64.031998 63.109998 64.031998h-48.025999c-35.515999 0-63.339998-28.515999-63.339998-64.031998V530.554014c-0.003-75.501998 15.566-150.106996 47.205999-218.659993z"
+                    fill="none" p-id="7279"></path>
+                <path stroke="#29ABE2" stroke-width="25"
+                    d="M592.039998 271.871022H431.954002l16.01-80.041998h128.067996zM367.927004 832.167006h288.159992v48.025998h-288.159992z"
+                    fill="none" p-id="7280"></path>
+                <path stroke="#FFFFFF" stroke-width="25" d="M367.927004 608.064012h288.159992V832.190006h-288.159992z"
+                    fill="none" p-id="7281"></path>
+                <path stroke="#C7B299" stroke-width="25"
+                    d="M431.964002 608.064012a80.043998 80.043998 0 1 0 160.087996 0 80.043998 80.043998 0 1 0-160.087996 0z"
+                    fill="none" p-id="7282"></path>
+                <path stroke="#29ABE2" stroke-width="25"
+                    d="M367.927004 560.038014h64.034998v48.025998h-64.034998z m224.124994 0h64.034998v48.025998h-64.034998zM479.990001 608.064012a32.017999 32.017999 0 1 0 64.035998 0 32.017999 32.017999 0 1 0-64.035998 0z"
+                    fill="none" p-id="7283"></path>
+                <path stroke="#29ABE2" stroke-width="25"
+                    d="M511.998 655.807011c-26.331999 0-47.753999-21.422999-47.753999-47.754999s21.421999-47.753999 47.753999-47.753998 47.753999 21.421999 47.753999 47.753998-21.423999 47.754999-47.753999 47.754999z m0-64.034998c-8.978 0-16.282 7.304-16.282 16.281999s7.304 16.282 16.282 16.282 16.282-7.304 16.282-16.282-7.306-16.282-16.282-16.281999zM417.150003 768.805007h190.929994v31.472H417.150003z m29.373999-48.257998h130.083996v31.471999H446.524002z"
+                    fill="none" p-id="7284"></path>
+                <path stroke="#C7B299" stroke-width="25"
+                    d="M479.990001 271.880022a32.017999 32.017999 0 1 0 64.035998 0 32.017999 32.017999 0 1 0-64.035998 0z"
+                    fill="none" p-id="7285"></path>
+                <path stroke="white" stroke-width="10"
+                    d="M622.335997 305.301021c-30.187999-65.411998-46.251999-137.993996-46.547999-210.042994A31.217999 31.217999 0 0 0 596.699998 83.410028a31.269999 31.269999 0 0 0 5.723999-26.988l-5.873999-23.499999A43.399999 43.399999 0 0 0 554.383999 0.00003h-84.771998a43.397999 43.397999 0 0 0-42.163999 32.919999l-5.873999 23.499999a31.255999 31.255999 0 0 0 5.723999 26.988 31.213999 31.213999 0 0 0 20.914 11.847999c-0.296 72.049998-16.362 144.636996-46.549999 210.042994-32.366999 70.125998-49.474999 148.018996-49.474998 225.250993v413.407988c0 44.135999 35.908999 80.041998 80.042997 80.041998h159.539996c44.135999 0 80.042998-35.905999 80.042997-80.041998V530.554014c-0.002-77.235998-17.109999-155.128995-49.476998-225.252993z m-65.017998-48.447999c-6.312-18.991999-24.235999-32.735999-45.319999-32.735999s-39.007999 13.74-45.319999 32.735999h-12.585999a543.389984 543.389984 0 0 0 12.987999-48.257998h89.837998a543.759984 543.759984 0 0 0 12.987999 48.257998h-12.587999z m-29.039999 15.018c0 8.976-7.304 16.282-16.282 16.282s-16.282-7.304-16.282-16.282 7.304-16.282 16.282-16.281999c8.978 0.002 16.282 7.308 16.282 16.281999z m16.015999-176.362995c0.12 27.259999 2.404 54.586998 6.698 81.616998h-77.985998c4.292-27.031999 6.58-54.356998 6.7-81.616998h64.587998z m-74.681998-64.035998h84.771998a11.974 11.974 0 0 1 11.633999 9.082l5.93 23.475999-0.038 0.002h-119.799996l5.87-23.477999a11.972 11.972 0 0 1 11.631999-9.082z m-39.377999 287.014992c4.57-9.902 8.8-19.973999 12.756-30.159999h24.175999c6.718 18.249999 24.279999 31.299999 44.829999 31.299999 20.551999 0 38.111999-13.05 44.829999-31.299999H580.999998a529.687984 529.687984 0 0 0 12.756 30.161999c30.471999 66.019998 46.575999 139.352996 46.575998 212.066993V544.300014h-56.943998c-17.549999-19.635999-43.049999-32.025999-71.397998-32.025999s-53.845998 12.39-71.397998 32.025999h-56.943998v-13.748c0.01-72.709998 16.116-146.041996 46.585998-212.064993zM383.658004 817.060006V624.030012h33.919999c7.63 45.232999 47.051999 79.802998 94.419997 79.802997s86.789997-34.573999 94.419997-79.802997h33.919999v193.029994h-256.679992z m256.679992 31.471999v14.688h-256.679992v-14.688h256.679992zM417.490003 592.556013h-33.833999V575.770013h38.173999a95.157997 95.157997 0 0 0-4.34 16.786z m30.199999 15.497999c0-35.457999 28.847999-64.305998 64.305998-64.305998s64.305998 28.847999 64.305998 64.305998-28.847999 64.306998-64.305998 64.306998-64.305998-28.847999-64.305998-64.306998z m158.813995-15.497999a94.769997 94.769997 0 0 0-4.342-16.786h38.173999v16.786h-33.831999z m-14.735999 399.975988h-159.539996c-26.781999 0-48.569999-21.789999-48.569998-48.569999v-49.268998h256.679992v49.268998c0 26.779999-21.789999 48.569999-48.569998 48.569999z"
+                    fill="none" p-id="7286"></path>
+            </svg>
+            <svg id="beerglass" t="1565581315581" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="8508" width="70" height="70">
+                <path
+                    d="M804.352 406.016l-82.432 0-48.64 0 0 473.6-97.792 0L575.488 408.064c-17.408 11.776-14.848 19.968-36.864 23.552l0 447.488L435.2 879.104 435.2 430.08c-19.968-4.608-20.992-12.8-36.864-24.064l0 473.6L294.4 879.616 294.4 406.016 250.88 406.016l0 445.952c0 45.568 36.864 82.432 82.432 82.432l304.128 0c45.568 0 86.528-36.864 86.528-82.432l0-64 80.384 0c36.352 0 66.048-29.696 66.048-66.048L870.4 472.064C870.4 435.712 841.216 406.016 804.352 406.016zM825.856 742.912l-101.888 0L723.968 450.048l101.888 0L825.856 742.912z"
+                    p-id="8509" fill="#60B9EE"></path>
+                <path class="svg-beerglass"
+                    d="M485.376 403.456c-39.424 0-75.776-16.384-102.4-45.056-19.968 14.336-43.52 22.016-68.096 22.016-53.248 0-99.84-36.352-112.64-87.552-16.896-12.8-26.624-32.768-26.624-54.272 0-37.888 30.72-69.12 69.12-69.12 1.024 0 2.048 0 3.072 0 16.896-12.288 36.352-19.456 56.32-21.504 14.848-32.768 47.616-54.784 83.968-54.784 27.136 0 52.736 11.776 70.144 32.256 18.944-4.096 36.352-4.096 55.808 0.512 17.408-20.48 43.008-32.768 70.656-32.768 35.328 0 67.584 20.48 82.944 52.224 60.928 4.096 109.056 54.272 109.056 116.224 0 64-52.224 116.224-116.224 116.224-25.088 0-49.152-8.192-69.12-23.04C564.224 385.536 525.824 403.456 485.376 403.456zM386.56 319.488l8.704 11.776c22.016 28.672 54.784 45.056 90.112 45.056 36.352 0 71.168-17.92 92.672-48.128l9.216-12.8 11.264 10.752c16.896 16.384 38.912 25.088 61.952 25.088 49.152 0 89.6-39.936 89.6-89.6 0-49.152-39.936-89.088-89.088-89.6-0.512 0-1.024 0-2.048 0l-9.728 0-3.072-9.216c-9.728-25.6-34.304-43.008-61.44-43.008-21.504 0-41.984 10.752-54.272 28.672l-5.632 7.68-9.216-2.56c-21.504-6.144-38.4-6.144-59.392-0.512l-9.216 2.56L441.856 148.48c-12.288-17.408-32.256-28.16-53.76-28.16-28.16 0-52.736 17.92-61.952 45.056L323.072 174.08l-9.216 0c-19.456 0.512-37.888 7.168-53.76 19.968l-4.608 3.584-7.68-1.024c-1.024 0-2.048-0.512-3.072-0.512-23.04 0-41.984 18.944-41.984 41.984 0 14.336 7.168 27.136 18.944 35.328l4.608 3.072 1.024 5.632C236.032 323.584 272.896 353.28 314.88 353.28c22.528 0 44.032-8.704 60.416-24.064L386.56 319.488z"
+                    p-id="8510" fill="#60B9EE"></path>
+                <path
+                    style="fill:#60b9ee;fill-opacity:1;stroke:#60b9ee;stroke-width:38.5823288;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                    d="m 250.87999,406.01599 h 470.1288" id="path1387" inkscape:connector-curvature="0" />
+            </svg>
+            <g id="beerbottleneon">
+                <use xlink:href="#beerbottle" filter="url(#beerbottleblur)" />
+                <use xlink:href="#beerbottle" opacity="0.9" />
+            </g>
+            <g id="beerbottleneon1">
+                <use xlink:href="#beerbottleneon">
+                    <animateTransform attributeName="transform" id="f1" attributeType='XML' begin='0s;t1.end' dur='2s'
+                        type="rotate" from="0 0 0" to="0 0 0" />
+                    <animateTransform attributeName="transform" id="s1" attributeType='XML' begin='f1.end' dur='0.1s'
+                        type="rotate" from="0 64 64" to="70 64 64" />
+                    <animateTransform attributeName="transform" id="t1" attributeType='XML' begin='s1.end' dur='2s'
+                        type="rotate" from="70 64 64" to="70 64 64" />
+                </use>
+            </g>
+            <g id="beerglassneon">
+                <use xlink:href="#beerglass" filter="url(#beerbottleblur)" />
+                <use xlink:href="#beerglass" opacity="0.5" />
+            </g>
+            <path id="beerpath" d="M -20.501285,20 A 97.750643,50 0 0 0 175,20" />
+            <text id="beerday" fill-opacity="0.4" stroke="white" stroke-width="1" fill="none" font-size="25">
+                <textPath xlink:href="#beerpath" startOffset="40">SVG园区啤酒节</textPath>
+            </text>
+            <g id="beerdayneon">
+                <use xlink:href="#beerday" filter="url(#beerbottleblur)" />
+                <use xlink:href="#beerday" opacity="0.9" />
+            </g>
+            <circle id="beercircleback" r="110" fill="#1D1D1D">
+
+            </circle>
+            <circle id="beercircle" r="110" stroke="#FFFFFF" stroke-width="5" fill="none">
+                <animate attributeName="stroke" id="f2" begin="0s;t2.end" from="#FFFFFF" to="#A8A8FF" dur="2s" />
+                <animate attributeName="stroke" id="s2" begin="f2.end" from="#A8A8FF" to="#FFFF00" dur="2s" />
+                <animate attributeName="stroke" id="t2" begin="s2.end" from="#FFFF00" to="#FFFFFF" dur="2s" />
+            </circle>
+            <g id="beercircleneon">
+                <use xlink:href="#beercircle" filter="url(#beerbottleblur)" />
+                <use xlink:href="#beercircle" opacity="0.9" />
+            </g>
+            <g id="beerdayboard">
+                <use xlink:href="#beercircleback" x="110" y="110" />
+                <use xlink:href="#beerbottleneon1" x="10" y="20" />
+                <use xlink:href="#beerglassneon" x="110" y="78" />
+                <use xlink:href="#beerdayneon" x="30" y="120" />
+                <use xlink:href="#beercircleneon" x="110" y="110" />
+            </g>
+        </defs>
+        <!--
+        <use xlink:href="#moon" />
+        <use xlink:href="#cloud" />
+        -->
+        <use xlink:href="#beerdayboard" x="600" y="580" transform="scale(0.4)" opacity="0.5" />
+        <image xlink:href="yuanqiang.png" x="0" y="-50" width="455" />
+        <use xlink:href="#huazhiyin" x="-185" y="436" />
+        <use xlink:href="#fly" x="20" y="330" />
+        <!--<use xlink:href="#huazhi" x="210" y="470" />-->
+        <use xlink:href="#suibian1" filter="url(#shock2)" x="84" y="-28" />
+        <image xlink:href="by.png" x="150" y="373" width="180" filter="url(#blur-moon)" transform="skewX(10)" />
+        <use xlink:href="#jiupinshadow" x="70" y="50" />
+        <use xlink:href="#stop" y="400" />
+        <use xlink:href="#wcall" x="260" y="410" />
+        <use xlink:href="#fingerall" x="320" y="410" />
+
+
+    </svg>
+</body>
+
+</html>
