@@ -111,8 +111,8 @@
                 <use xlink:href="#beerglass" opacity="0.5" />
             </g>
             <path id="beerpath" d="M -20.501285,20 A 97.750643,50 0 0 0 175,20" />
-            <text id="beerday" fill-opacity="0.4" stroke="white" stroke-width="1" fill="none" font-size="25">
-                <textPath xlink:href="#beerpath" startOffset="40">SVG园区啤酒节</textPath>
+            <text id="beerday" fill-opacity="0.4" stroke="white" stroke-width="1" fill="none" font-size="25" x="40">
+                <textPath xlink:href="#beerpath" >SVG园区啤酒节</textPath>
             </text>
             <g id="beerdayneon">
                 <use xlink:href="#beerday" filter="url(#beerbottleblur)" />
@@ -136,7 +136,7 @@
                 <use xlink:href="#beercircleneon" x="110" y="110" />
             </g>
         </defs>
-        <use xlink:href="#beerdayboard" />
+        <use xlink:href="#beerdayboard" x="10" y="10"/>
     </svg>
 </body>
 
