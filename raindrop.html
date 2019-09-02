@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>窗外的雨</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.7.1/css-doodle.min.js'></script>
+    <style>
+        body {
+            background: #222;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .window {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background: url("https://cn.bing.com//th?id=OHR.ParrotsIndia_ZH-CN8386276023_UHD.jpg");
+            background-size: cover;
+            background-position: 100%;
+            filter: blur(10px);
+        }
+
+        css-doodle {
+            --rule: ( :doodle {
+                    @grid: 10x10/ 100%;
+                    overflow: visible;
+                }
+
+                transform: scale(@rand(.5, .9));
+
+                @random {
+                    --size:(4 + @r(1, 8));
+                    --shadow-size: calc(((@var(--size)*0.3) - 1)*1px);
+                    --mleft:@r(1, 100)px;
+                    --mtop:@r(1, 100);
+                    --mtop1:(@var(--mtop) - 1);
+                    --mtopb:calc(@var(--mtop)*1px);
+                    --mtopa:calc(@var(--mtop1)*1px);
+                    --height:@r(15, 25)px;
+                    --width:@r(8, 20);
+                    --width1:(@var(--width) + 5);
+                    --widthb:calc(@var(--width)*1px);
+                    --widtha:calc(@var(--width1)*1px);
+                    --delay: @r(1s,20s);
+
+                    :before {
+                        content: '';
+                        position: absolute;
+                        margin-left: @var(--mleft);
+                        margin-top: @var(--mtopb);
+                        border-radius: 100%;
+                        box-shadow: 0 0 0 @var(--shadow-size) rgba(0, 0, 0, 0.6);
+                        transform: rotateY(0);
+                        width: @var(--widthb);
+                        height: @var(--height);
+                        opacity: 0;
+                        animation: raindrop-fall 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        animation-fill-mode: forwards;
+                        animation-delay: @var(--delay);
+                    }
+
+                    :after {
+                        content: '';
+                        filter: brightness(1.2);
+                        position: absolute;
+                        margin-left: @var(--mleft);
+                        margin-top: @var(--mtopa);
+                        background-size: 5vw 5vh;
+                        border-radius: 100%;
+                        background-image: url("https://cn.bing.com//th?id=OHR.ParrotsIndia_ZH-CN8386276023_UHD.jpg");
+                        transform: rotate(180deg) rotateY(0);
+                        background-position: @r(1%, 100%) @r(1%, 100%);
+                        width: @var(--widtha);
+                        height: @var(--height);
+                        opacity: 0;
+                        animation: raindrop-fall 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        animation-fill-mode: forwards;
+                        animation-delay: @var(--delay);
+                    }
+                }
+
+                @keyframes raindrop-fall {
+                    0% {
+                        opacity: 0;
+                        transform: rotate(180deg) scale(2.5, 2.3) rotateY(0);
+                    }
+
+                    100% {
+                        opacity: 1;
+                        transform: rotate(180deg) scale(1, 1) rotateY(0);
+                    }
+                }
+            );
+        }
+    </style>
+</head>
+
+<body>
+    <div class='container'>
+        <div class='window'></div>
+        <css-doodle use="var(--rule)"></css-doodle>
+    </div>
+    <script>
+        document.addEventListener('click', e => e.target.update && e.target.update());
+    </script>
+</body>
+
+</html>
