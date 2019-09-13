@@ -1,0 +1,58 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+#container {
+  height: 1136px;
+  width: 640px;
+  position: relative;
+  overflow: hidden;
+}
+
+#product-svg {
+  position: relative;
+  z-index: 2;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  mix-blend-mode: multiply;
+  display: block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#background-image {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#product-shape {
+  fill: #C7ED68;
+}
+
+.jscolor {
+  position: fixed;
+  bottom: 4em;
+  right: 4em;
+  z-index: 3;
+  padding: 1em;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
