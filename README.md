@@ -10,6 +10,7 @@ ypylhny.html 云破月来花弄影的实现<br/>
 suibian.html 啤酒节上尿意浓的展示<br/>
 raindrop.html 是谁在敲打我窗的展示<br/>
 changcolor/index.html 神仙姐姐的变装秀-photoshop,SVG综合艺术小赏<br/>
+douyin.html,douyin1.html 抖音图标故障艺术<br/>
 #### 对应教程
 我的知乎专栏 [编码花](https://zhuanlan.zhihu.com/c_1106228534267351040)<br/>
 教程地址：<br/>
