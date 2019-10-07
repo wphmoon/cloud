@@ -21,3 +21,4 @@ douyin.html,douyin1.html 抖音图标故障艺术<br/>
 [啤酒节上尿意浓-SVG低级艺术展示](https://zhuanlan.zhihu.com/p/78089364)<br/>
 [是谁，在敲打我窗-CSS雨滴动画效果](https://zhuanlan.zhihu.com/p/80852343)<br/>
 [神仙姐姐的变装秀-photoshop,SVG综合艺术小赏](https://zhuanlan.zhihu.com/p/82394146)<br/>
+[抖音抖一抖-SVG和CSS视觉故障艺术小赏](https://zhuanlan.zhihu.com/p/85451878)<br/>
